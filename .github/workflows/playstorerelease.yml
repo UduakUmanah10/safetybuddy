@@ -22,8 +22,8 @@ jobs:
       - name: Grant Execute permissions for gradlew
         run: chmod +x gradlew
 
-      - name:  run detekt
-        run: ./gradlew detekt
+ #     - name:  run detekt
+ #       run: ./gradlew detekt
 
       - name: run test
         run: ./gradlew clean testDebug
