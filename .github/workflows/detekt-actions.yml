@@ -21,7 +21,7 @@ jobs:
         run: chmod +x gradlew
 
 #      - name:  run detekt #
-#        run: ./gradlew detekt #
+#        run: ./gradlew detekt
 
       - name: run test
         run: ./gradlew clean testDebug
