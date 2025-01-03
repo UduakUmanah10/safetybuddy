@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "safetybuddy"
 include(":app")
- 
+include(":core:view")

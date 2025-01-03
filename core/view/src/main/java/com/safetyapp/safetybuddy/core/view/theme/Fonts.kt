@@ -1,9 +1,10 @@
-package com.safetyapp.safetybuddy.ui.theme
+package com.safetyapp.safetybuddy.core.view.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import com.safetyapp.safetybuddy.R
+import com.safetyapp.safetybuddy.core.view.R
+
 
 val OpenSans = FontFamily(
     Font(R.font.roboto_bold,FontWeight.Normal),
