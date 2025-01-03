@@ -13,8 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.safetyapp.safetybuddy.ui.theme.PreviewLightDark
-import com.safetyapp.safetybuddy.ui.theme.SafeBuddyTheme
+import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
+import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
