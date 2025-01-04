@@ -1,4 +1,4 @@
-package com.safetyapp.safetybuddy.ui.theme
+package com.safetyapp.safetybuddy.core.view.theme
 
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview

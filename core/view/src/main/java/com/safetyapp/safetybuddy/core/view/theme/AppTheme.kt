@@ -1,4 +1,4 @@
-package com.safetyapp.safetybuddy.ui.theme
+package com.safetyapp.safetybuddy.core.view.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -249,7 +249,7 @@ private val typography =     AppTypography(
     )
 )
 
-private  val shape =AppShape(
+private  val shape = AppShape(
     container = RoundedCornerShape(12.dp),
     button = RoundedCornerShape(50)
 
@@ -278,8 +278,8 @@ fun SafeBuddyTheme(
 }
 
 object SafeBuddyTheme {
-    val colorScheme:AppColorScheme  @Composable get() = localAppColorScheme.current
-    val appTypography:AppTypography  @Composable get() = localAppTypography.current
-    val appSize:AppSize @Composable get() = localAppsize.current
-    val appShape:AppShape @Composable get() = localAppshape.current
+    val colorScheme: AppColorScheme @Composable get() = localAppColorScheme.current
+    val appTypography: AppTypography @Composable get() = localAppTypography.current
+    val appSize: AppSize @Composable get() = localAppsize.current
+    val appShape: AppShape @Composable get() = localAppshape.current
 }

@@ -1,4 +1,4 @@
-package com.safetyapp.safetybuddy.ui.theme
+package com.safetyapp.safetybuddy.core.view.theme
 
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.staticCompositionLocalOf
