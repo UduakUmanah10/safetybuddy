@@ -13,8 +13,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
+import com.safetyapp.safetybuddy.feature.home.homeScreen
+import com.safetyapp.safetybuddy.feature.home.navigateToHome
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,33 +28,42 @@ class MainActivity : ComponentActivity() {
         setContent {
             SafeBuddyTheme {
 
+                val navController = rememberNavController()
 
-                    Column{
-                        favoursButton()
-                        Text("update")
-                        Greeting(
-                            name = "Android",
-                            // modifier = Modifier.padding(innerPadding)
-                        )
-                        Text("update")
+                NavHost(
+                    navController =navController,
+                    startDestination = "test"
+                ){
+                    composable("test"){
+                        Greeting("test") {
+                            navController.navigateToHome()
+                        }
 
                     }
+                    homeScreen(onLogin = {})
+                }
+
+
             }
-
-
-
 
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier,
-        color = SafeBuddyTheme.colorScheme.error
-    )
+fun Greeting(name: String, modifier: Modifier = Modifier,onClick: ()-> Unit,) {
+    Column {
+        Text(
+            text = "Hello $name!",
+            modifier = modifier,
+            color = SafeBuddyTheme.colorScheme.error
+        )
+        Button(onClick = onClick, modifier = Modifier.fillMaxWidth().padding(top = 40.dp)) {
+            Text("favours button")
+        }
+
+    }
+
 }
 
 @Composable
@@ -64,7 +78,7 @@ fun favoursButton(){
 @Composable
 fun GreetingPreview() {
     SafeBuddyTheme {
-        Greeting(modifier = Modifier.fillMaxWidth().fillMaxHeight(), name = "Android")
+        Greeting(modifier = Modifier.fillMaxWidth().fillMaxHeight(), name = "Android", onClick = {})
         favoursButton()
     }
 }
