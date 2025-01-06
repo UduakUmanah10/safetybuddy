@@ -40,6 +40,9 @@ android {
 dependencies {
     implementation(libs.bundles.androidx)
     implementation(project(":core:view"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:signin"))
+    implementation(project(":feature:signup"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
