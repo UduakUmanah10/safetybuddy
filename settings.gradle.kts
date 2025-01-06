@@ -22,3 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "safetybuddy"
 include(":app")
 include(":core:view")
+include(":feature:home")
+include(":feature:signin")
+include(":feature:signup")
