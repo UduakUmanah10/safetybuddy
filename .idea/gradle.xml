@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/core/view" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/onboarding" />
             <option value="$PROJECT_DIR$/feature/signin" />
             <option value="$PROJECT_DIR$/feature/signup" />
           </set>
