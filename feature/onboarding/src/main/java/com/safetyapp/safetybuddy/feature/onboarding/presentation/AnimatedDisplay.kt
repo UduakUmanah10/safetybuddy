@@ -1,10 +1,9 @@
 package com.safetyapp.safetybuddy.feature.onboarding.presentation
+import androidx.annotation.RawRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,12 +34,13 @@ import kotlinx.coroutines.delay
  * **/
 
 @Composable
-fun AnimatedDisplay(
+fun AnimatedDisplayComposable(
     modifier:Modifier = Modifier,
-    currentOnBoardingPage: OnBoardingPage,
+    @RawRes image:Int ,
     playAnimation:Boolean= true,
     delayTime:Long = 2700,
-    animationSpeed:Float =1f
+    animationSpeed:Float =1f,
+    restartOnPlay: Boolean =true
 
 ) {
     Column(
@@ -48,7 +48,7 @@ fun AnimatedDisplay(
     ) {
         val composition by rememberLottieComposition(
             spec = LottieCompositionSpec.RawRes(
-                currentOnBoardingPage.image
+                image
             )
         )
         var isAnimationPlaying by remember { mutableStateOf(playAnimation) }
@@ -56,7 +56,7 @@ fun AnimatedDisplay(
 
         LaunchedEffect(key1 = isAnimationPlaying) {
             delay(delayTime)
-            isAnimationPlaying = !isAnimationPlaying
+            isAnimationPlaying = !playAnimation
         }
 
         val progress by animateLottieCompositionAsState(
@@ -64,7 +64,7 @@ fun AnimatedDisplay(
             iterations = LottieConstants.IterateForever,
             isPlaying = isAnimationPlaying,
             speed = speed,
-            restartOnPlay = true,
+            restartOnPlay = restartOnPlay,
         )
         LottieAnimation(
             composition = composition,
@@ -88,8 +88,9 @@ fun AnimatedContentPreview(){
         OnBoardingPage.Second,
         OnBoardingPage.Third,
     )
-    AnimatedDisplay(modifier =  Modifier
+    AnimatedDisplayComposable(
+        modifier =  Modifier
         .fillMaxWidth().background(Color.Transparent),
-         currentOnBoardingPage = pages[0]
+        image = pages[0].image,
     )
 }

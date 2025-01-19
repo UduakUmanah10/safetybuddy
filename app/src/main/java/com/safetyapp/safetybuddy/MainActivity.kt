@@ -67,7 +67,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier,onClick: ()-> Unit,) {
 }
 
 @Composable
-fun favoursButton(){
+fun FavoursButton(){
     Button(onClick = {}, modifier = Modifier.fillMaxWidth().padding(top = 40.dp)) {
         Text("favours button")
     }
@@ -79,6 +79,6 @@ fun favoursButton(){
 fun GreetingPreview() {
     SafeBuddyTheme {
         Greeting(modifier = Modifier.fillMaxWidth().fillMaxHeight(), name = "Android", onClick = {})
-        favoursButton()
+        FavoursButton()
     }
 }
