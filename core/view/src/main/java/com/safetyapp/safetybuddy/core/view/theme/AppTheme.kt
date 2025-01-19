@@ -26,7 +26,7 @@ private val light_tertiaryContainer = Color(0xFFecdcff)
 private val light_onTertiaryContainer = Color(0xFF211634)
 private val light_error = Color(0xFFba1b1b)
 private val light_errorContainer = Color(0xFFffdad4)
-private val light_onError = Color(0xFFffffff)
+private val light_onError = Color(0xFFba1b1b)
 private val light_onErrorContainer = Color(0xFF410001)
 private val light_background = Color(0xFFfcfcff)
 private val light_onBackground = Color(0xFF1a1c1e)
@@ -69,7 +69,7 @@ private val dark_fontColor = Color(0xFFe8e9e9)
 private val dark_ColorBar = Color(0xFFf4f4f2)
 
 private val dark_backgroundColor = Color(0xff2b2b2a)
-private val onboarding_buttonColor = Color(0xFF292992)
+private val onboarding_buttonColor = Color(0xFF00308F)
 private val seed = Color(0xFF0f3750)
 private val error = Color(0xFFba1b1b)
 
@@ -99,7 +99,7 @@ private  val lightColorScheme = AppColorScheme(
     onSurfaceVariant = light_onSurfaceVariant,
     outline = light_outline,
     inverseOnSurface = light_inverseOnSurface,
-    inverseSurface = light_inverseSurface,
+    inverseSurface = onboarding_buttonColor,
     scrim = light_ColorBar,
 
     )
