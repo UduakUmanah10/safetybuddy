@@ -30,5 +30,5 @@ fun NavController.navigateToSignInScreen(postId:Int){
 
 internal class postDSetailsArgs(val postId:String){
 
-    constructor(savedStateHandle: SavedStateHandle)  :this( requireNotNull( savedStateHandle.get<String>(POST_ID_Args)))
+    constructor(savedStateHandle: SavedStateHandle) :this( requireNotNull( savedStateHandle.get<String>(POST_ID_Args)))
 }

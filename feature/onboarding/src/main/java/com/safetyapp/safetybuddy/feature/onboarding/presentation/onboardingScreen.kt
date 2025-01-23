@@ -11,6 +11,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
@@ -18,24 +20,26 @@ import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 
 @Composable
 fun OnboardingScreen(
-    listOfOnboardingItems:List<OnBoardingPage>  = listOf(
+    listOfOnboardingItems: List<OnBoardingPage> = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
         OnBoardingPage.Third,
     ),
-    onNavigate: () -> Unit = {}
+    statusBarPadding: Dp = 50.dp,
+    onNavigate: () -> Unit = {},
+    backgroundColor: Color = SafeBuddyTheme.colorScheme.secondary
 
 ) {
 
     val pagerState = rememberPagerState(0){
         listOfOnboardingItems.size
     }
-
+    
     Column(
         modifier = Modifier
-            .background(MaterialTheme.colorScheme.secondary)
+            .background(backgroundColor)
             .fillMaxSize()
-            .statusBarsPadding().padding(top = 50.dp)
+            .statusBarsPadding().padding(top = statusBarPadding)
             .navigationBarsPadding(),
     ) {
 
@@ -44,7 +48,6 @@ fun OnboardingScreen(
             state = pagerState,
             verticalAlignment = Alignment.Top,
         ) { position ->
-
                 PagerComposable(
                     currentIndex = position,
                     image = listOfOnboardingItems[position].image,
@@ -52,7 +55,6 @@ fun OnboardingScreen(
                     secondScreenText = listOfOnboardingItems[position].description,
                     onfinishClicked = onNavigate
                 )
-
         }
     }
 }
@@ -64,7 +66,7 @@ fun OnboardingScreen(
 fun OnBoardingScreenPreview() {
 
     SafeBuddyTheme{
-        OnboardingScreen()
+        OnboardingScreen(backgroundColor = MaterialTheme.colorScheme.secondary)
 
     }
 
