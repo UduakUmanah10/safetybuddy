@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:signin"))
     implementation(project(":feature:signup"))
+    implementation(project(":feature:onboarding"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

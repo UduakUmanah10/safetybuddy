@@ -20,6 +20,7 @@ import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 import com.safetyapp.safetybuddy.feature.home.homeScreen
 import com.safetyapp.safetybuddy.feature.home.navigateToHome
+import com.safetyapp.safetybuddy.feature.onboarding.presentation.onboardingScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,15 +33,14 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController =navController,
-                    startDestination = "test"
+                    startDestination = "onboardingScreen"
                 ){
                     composable("test"){
-                        Greeting("test") {
-                            navController.navigateToHome()
-                        }
+
 
                     }
                     homeScreen(onLogin = {})
+                    onboardingScreen(onFinishedClicked = {})
                 }
 
 
@@ -50,35 +50,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier,onClick: ()-> Unit,) {
-    Column {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier,
-            color = SafeBuddyTheme.colorScheme.error
-        )
-        Button(onClick = onClick, modifier = Modifier.fillMaxWidth().padding(top = 40.dp)) {
-            Text("favours button")
-        }
-
-    }
-
-}
-
-@Composable
-fun FavoursButton(){
-    Button(onClick = {}, modifier = Modifier.fillMaxWidth().padding(top = 40.dp)) {
-        Text("favours button")
-    }
-}
-
 
 @PreviewLightDark
 @Composable
 fun GreetingPreview() {
-    SafeBuddyTheme {
-        Greeting(modifier = Modifier.fillMaxWidth().fillMaxHeight(), name = "Android", onClick = {})
-        FavoursButton()
+    SafeBuddyTheme{
+        val navController = rememberNavController()
+
+        NavHost(
+            navController =navController,
+            startDestination = "onboardingScreen"
+        ) {
+            onboardingScreen(onFinishedClicked = {})
+        }
+
     }
 }
