@@ -19,14 +19,14 @@ import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 
 
 @Composable
-fun OnboardingScreen(
+internal fun  OnboardingScreen(
     listOfOnboardingItems: List<OnBoardingPage> = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
         OnBoardingPage.Third,
     ),
     statusBarPadding: Dp = 50.dp,
-    onNavigate: () -> Unit = {},
+    onFinishedClicked: () -> Unit = {},
     backgroundColor: Color = SafeBuddyTheme.colorScheme.secondary
 
 ) {
@@ -39,7 +39,8 @@ fun OnboardingScreen(
         modifier = Modifier
             .background(backgroundColor)
             .fillMaxSize()
-            .statusBarsPadding().padding(top = statusBarPadding)
+            .statusBarsPadding()
+            .padding(top = statusBarPadding)
             .navigationBarsPadding(),
     ) {
 
@@ -53,7 +54,7 @@ fun OnboardingScreen(
                     image = listOfOnboardingItems[position].image,
                     firstScreenText = listOfOnboardingItems[position].title,
                     secondScreenText = listOfOnboardingItems[position].description,
-                    onfinishClicked = onNavigate
+                    onfinishClicked = onFinishedClicked
                 )
         }
     }
@@ -64,9 +65,10 @@ fun OnboardingScreen(
 @Composable
 @PreviewLightDark
 fun OnBoardingScreenPreview() {
-
     SafeBuddyTheme{
-        OnboardingScreen(backgroundColor = MaterialTheme.colorScheme.secondary)
+        OnboardingScreen(
+          //  backgroundColor = MaterialTheme.colorScheme.secondary
+        )
 
     }
 
