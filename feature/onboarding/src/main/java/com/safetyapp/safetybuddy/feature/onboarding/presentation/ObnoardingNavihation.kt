@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
+import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 
 const val ONBOARDING_ROUTE = "onboardingScreen"
 fun NavGraphBuilder.onboardingScreen(onFinishedClicked:()->Unit){

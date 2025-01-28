@@ -19,7 +19,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
+import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 import kotlinx.coroutines.delay
 
 /**

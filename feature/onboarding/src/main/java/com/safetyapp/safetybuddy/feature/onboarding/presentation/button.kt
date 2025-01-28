@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
+import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 
 

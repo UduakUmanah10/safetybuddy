@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.safetyapp.safetybuddy.core.view.theme.PreviewLightDark
+import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 
 

@@ -1,11 +1,12 @@
 package com.safetyapp.safetybuddy.feature.onboarding.presentation
 
 import androidx.annotation.RawRes
+import androidx.compose.runtime.Stable
 import com.safetyapp.safetybuddy.core.view.R.raw.men_at_work
 import com.safetyapp.safetybuddy.core.view.R.raw.dataanalysis
 import com.safetyapp.safetybuddy.core.view.R.raw.ambulancia
 
-
+@Stable
 sealed class OnBoardingPage(
     @RawRes
     val image: Int,
