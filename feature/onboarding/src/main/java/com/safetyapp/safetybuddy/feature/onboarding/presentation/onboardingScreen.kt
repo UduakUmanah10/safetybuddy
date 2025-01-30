@@ -65,9 +65,7 @@ internal fun  OnboardingScreen(
 @PreviewLightDark
 fun OnBoardingScreenPreview() {
     SafeBuddyTheme{
-        OnboardingScreen(
-          //  backgroundColor = MaterialTheme.colorScheme.secondary
-        )
+        OnboardingScreen()
 
     }
 
