@@ -9,24 +9,22 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.safetyapp.safetybuddy.core.view.R
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
+
+
 
 @Composable
 fun CustomTextField(
@@ -35,16 +33,14 @@ fun CustomTextField(
     onTextChanged: (String) -> Unit,
     labelText: String,
     placeholderText: String = "",
-    errorMessage: String? = null,
-    leadingIcon: (@Composable () -> Unit)? = null,
-    trailingIcon: (@Composable () -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = {SwitchIcons(showIcon = false)},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     shape: Shape = OutlinedTextFieldDefaults.shape,
-    onFocusChanged: (FocusState) -> Unit = {},
     singleLine: Boolean = true,
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(
         focusedBorderColor = SafeBuddyTheme.colorScheme.primary,
@@ -53,10 +49,14 @@ fun CustomTextField(
         disabledTextColor = Color.Blue,
         disabledSupportingTextColor = Color.Blue,
 
-    ),
+        ),
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
     minLines: Int = 1,
-) {
+    showtrailingIcon: Boolean = true,
+    supportingText: @Composable (() -> Unit)? = null,
+
+    ) {
+
     Column(modifier = modifier) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -68,8 +68,8 @@ fun CustomTextField(
             label = { Text(labelText) },
             placeholder = { Text(placeholderText) },
             leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            isError = errorMessage != null,
+            trailingIcon =  if (showtrailingIcon) trailingIcon else null,
+            isError =  false,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
@@ -78,26 +78,13 @@ fun CustomTextField(
             minLines = minLines,
             shape = shape,
             colors = colors,
-            supportingText =  { Text("supporting Teext") }
+            supportingText = supportingText
         )
 
-        //ErrorText(errorMessage = errorMessage)
     }
 }
 
-@Composable
-private fun ErrorText(errorMessage: String?) {
-    errorMessage?.let {
-        Text(
-            text = it,
-            color = SafeBuddyTheme.colorScheme.error,
-            style = SafeBuddyTheme.appTypography.bodySmall,
-            modifier = Modifier
-                .padding(start = 16.dp, top = 4.dp)
-                .fillMaxWidth()
-        )
-    }
-}
+
 
 @PreviewLightDark
 @Composable
@@ -109,54 +96,64 @@ fun CustomTextFieldPreview() {
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Normal state
             CustomTextField(
+                text = "",
+                onTextChanged = {},
+                labelText = "Password",
+                placeholderText = "enter  a valid password",
                 leadingIcon = {
-
                         Icon(
                             painter = painterResource(id = R.drawable.shieldlockx),
                             contentDescription = "",
                             tint = SafeBuddyTheme.colorScheme.error,
                             modifier = Modifier.size(20.dp),
                         )
-
                 },
-                text = "",
-                onTextChanged = {},
-                labelText = "Email",
-                placeholderText = "email@example.com",
-                shape = SafeBuddyTheme.appShape.button
+                shape = SafeBuddyTheme.appShape.button,
+
             )
 
-            // Error state
             CustomTextField(
                 text = "",
                 onTextChanged = {},
                 labelText = "Email",
                 placeholderText = "email@example.com",
-                errorMessage = "Invalid email format",
-                shape = SafeBuddyTheme.appShape.button
-               // isError = true
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.mail),
+                        contentDescription = "",
+                        tint = SafeBuddyTheme.colorScheme.error,
+                        modifier = Modifier.size(20.dp),
+                    )
+                },
+                shape = SafeBuddyTheme.appShape.button,
+                showtrailingIcon = false,
             )
-          //  val passwordIcon = if (passwordvisibility) R.drawable.visibility else R.drawable.visibility_off
 
-            // Disabled state
             CustomTextField(
-
                 text = "",
                 onTextChanged = {},
                 labelText = "",
+                enabled = false,
                 shape = SafeBuddyTheme.appShape.button,
-                enabled = false
             )
 
             CustomTextField(
-                text = "passwordtest",
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.shieldlockx),
+                        contentDescription = "",
+                        tint = SafeBuddyTheme.colorScheme.error,
+                        modifier = Modifier.size(20.dp),
+                    )
+                },
+                text = "password",
                 onTextChanged = {},
                 labelText = "Password",
-                shape = SafeBuddyTheme.appShape.button,
                 visualTransformation = PasswordVisualTransformation('*'),
-                enabled = true
+                enabled = true,
+                shape = SafeBuddyTheme.appShape.button,
+
             )
         }
     }
