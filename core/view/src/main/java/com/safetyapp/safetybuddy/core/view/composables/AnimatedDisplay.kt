@@ -1,4 +1,4 @@
-package com.safetyapp.safetybuddy.feature.onboarding.presentation
+package com.safetyapp.safetybuddy.core.view.composables
 import androidx.annotation.RawRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -19,13 +19,12 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
+import com.safetyapp.safetybuddy.core.view.R.raw.men_at_work
 import kotlinx.coroutines.delay
 
-/**
+/** <==To see this composable in preview screen switch the preview to interactive mode ==>
  These composable renders a view pager component from the material 3 design system.
   it takes in parameters such as
-  @Param[currentOnBoardingPage] : to display the current onboarding  screen details,
   from the onboarding page class.
   @Param[modifier] : to modify the composable
   @Param[playAnimation] : to play or stop the animation
@@ -35,12 +34,15 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun AnimatedDisplayComposable(
-    modifier:Modifier = Modifier,
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .height(400.dp)
+        .background(Color.Transparent),
     @RawRes image:Int ,
     playAnimation:Boolean= true,
     delayTime:Long = 2700,
     animationSpeed:Float =1f,
-    restartOnPlay: Boolean =true
+    restartOnPlay: Boolean =true,
 
 ) {
     Column(
@@ -69,10 +71,7 @@ fun AnimatedDisplayComposable(
         LottieAnimation(
             composition = composition,
             progress = progress,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(400.dp)
-                .background(Color.Transparent),
+            modifier = modifier,
         )
     }
 }
@@ -83,14 +82,10 @@ fun AnimatedDisplayComposable(
 @PreviewLightDark
 @Composable
 fun AnimatedContentPreview(){
-    val pages = listOf(
-        OnBoardingPage.First,
-        OnBoardingPage.Second,
-        OnBoardingPage.Third,
-    )
     AnimatedDisplayComposable(
         modifier =  Modifier
         .fillMaxWidth().background(Color.Transparent),
-        image = pages[0].image,
+        image =  men_at_work,
     )
 }
+
