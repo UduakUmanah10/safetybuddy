@@ -27,7 +27,7 @@ fun pagerControllerButtons(
     indicatorSpacer: Int = 5,
     indicatorSelectedLength:Int = 40,
     selectedColor:Color = SafeBuddyTheme.colorScheme.inverseSurface,
-    unSelectedColor:Color = Color.Gray,
+    unSelectedColor:Color = Color.White,
     onNextButtonClicked: ()->Unit ={},
     onBackButtonClicked: ()->Unit={},
     nextButtonText:String = "Next",
