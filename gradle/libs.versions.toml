@@ -18,7 +18,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 viewmodel = "2.8.7"
 lifecycle = "2.8.7"
-
+qindicators = "1.0.0"
 
 
 
@@ -45,6 +45,8 @@ viewmodel-lifecycle = { group ="androidx.lifecycle", name ="lifecycle-viewmodel-
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 
 
+
+qindicators = { module = "io.github.qamarelsafadi:qindicators", version.ref = "qindicators" }
 
 
 

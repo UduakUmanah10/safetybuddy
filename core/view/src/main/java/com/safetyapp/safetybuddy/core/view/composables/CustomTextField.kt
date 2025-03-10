@@ -17,7 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -38,7 +42,10 @@ fun CustomTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardOptions: KeyboardOptions = KeyboardOptions(
+         keyboardType = KeyboardType.Password,
+         imeAction = ImeAction.Done
+    ),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     shape: Shape = OutlinedTextFieldDefaults.shape,
     singleLine: Boolean = true,
@@ -52,14 +59,16 @@ fun CustomTextField(
         ),
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
     minLines: Int = 1,
-    showtrailingIcon: Boolean = true,
+    showTrailingIcon: Boolean = true,
     supportingText: @Composable (() -> Unit)? = null,
+    testTag:String = ""
 
     ) {
 
     Column(modifier = modifier) {
+
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag(testTag),
             value = text,
             onValueChange = onTextChanged,
             enabled = enabled,
@@ -68,7 +77,7 @@ fun CustomTextField(
             label = { Text(labelText) },
             placeholder = { Text(placeholderText) },
             leadingIcon = leadingIcon,
-            trailingIcon =  if (showtrailingIcon) trailingIcon else null,
+            trailingIcon =  if (showTrailingIcon) trailingIcon else null,
             isError =  false,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
@@ -127,7 +136,7 @@ fun CustomTextFieldPreview() {
                     )
                 },
                 shape = SafeBuddyTheme.appShape.button,
-                showtrailingIcon = false,
+                showTrailingIcon = false,
             )
 
             CustomTextField(

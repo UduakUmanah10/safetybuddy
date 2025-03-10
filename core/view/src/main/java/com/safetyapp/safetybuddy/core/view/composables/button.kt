@@ -1,4 +1,4 @@
-package com.safetyapp.safetybuddy.feature.onboarding.presentation
+package com.safetyapp.safetybuddy.core.view.composables
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 
 
@@ -16,7 +15,8 @@ import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 fun PagerScreenButton(
     modifier: Modifier,
     isButtonVisible: Boolean = true,
-    onButtonClicked: ()->Unit
+    onButtonClicked: ()->Unit,
+    enabled:Boolean = true,
 ) {
 
         AnimatedVisibility(
@@ -28,7 +28,8 @@ fun PagerScreenButton(
                 colors = ButtonDefaults.buttonColors(
                     containerColor =  SafeBuddyTheme.colorScheme.inverseSurface
                 ),
-                shape = MaterialTheme.shapes.extraLarge
+                shape = MaterialTheme.shapes.extraLarge,
+                enabled = enabled
             ) {
                 Text(
                     text = "Finish",

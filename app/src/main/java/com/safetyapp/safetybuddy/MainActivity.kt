@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,7 +28,26 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController =navController,
-                    startDestination = "onboardingScreen"
+                    startDestination = "onboardingScreen",
+                    enterTransition = {
+
+                        slideIntoContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Left, animationSpec = tween()
+                        )
+                    },
+                    exitTransition = {
+                        scaleOut(targetScale = .9f, animationSpec = tween())
+                    },
+                    popEnterTransition = {
+                        scaleIn(initialScale = .9f, animationSpec = tween())
+                    },
+                    popExitTransition = {
+                        slideOutOfContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Right, animationSpec = tween()
+                        )
+                    }
+
+
                 ){
                     composable("test"){
 
