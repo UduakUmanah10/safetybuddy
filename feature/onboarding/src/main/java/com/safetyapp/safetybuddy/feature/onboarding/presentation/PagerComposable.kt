@@ -28,9 +28,7 @@ OnBoardingPage.Third,
 
 @Composable
 fun PagerComposable(
-    currentIndex:Int,
-    firstScreenText:String,
-    secondScreenText:String,
+
     @RawRes image:Int,
 
 
@@ -44,28 +42,6 @@ fun PagerComposable(
             playAnimation = true,
             delayTime = 2700,
             animationSpeed =1f
-        )
-
-        Text(
-            modifier = Modifier
-                .fillMaxWidth(),
-            text = firstScreenText,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.displaySmall,
-            color = MaterialTheme.colorScheme.secondaryContainer,
-        )
-
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp)
-                .padding(top = 20.dp, bottom = 100.dp),
-            text =secondScreenText,
-            fontWeight = FontWeight.Medium,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.secondaryContainer,
         )
 
 
@@ -86,10 +62,9 @@ fun PagerComposable(
 fun Txtprev(){
     SafeBuddyTheme {
         PagerComposable(
-            currentIndex = 1,
+
             image = listOfOnboardingItems[0].image,
-            firstScreenText = "Real Time Situational Report",
-            secondScreenText = "Get real time Incident data, Respond appropriately to prevent severe Accident."
+
 
         )
     }

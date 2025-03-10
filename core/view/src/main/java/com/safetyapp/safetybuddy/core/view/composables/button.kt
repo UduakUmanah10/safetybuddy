@@ -14,15 +14,11 @@ import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 @Composable
 fun PagerScreenButton(
     modifier: Modifier,
-    isButtonVisible: Boolean = true,
     onButtonClicked: ()->Unit,
     enabled:Boolean = true,
 ) {
 
-        AnimatedVisibility(
-            visible = isButtonVisible
-        ) {
-            Button(
+    Button(
                 modifier = modifier,
                 onClick = onButtonClicked,
                 colors = ButtonDefaults.buttonColors(
@@ -37,7 +33,6 @@ fun PagerScreenButton(
                     color = MaterialTheme.colorScheme.secondaryContainer,
                 )
             }
-        }
 }
 
 @PreviewLightDark
