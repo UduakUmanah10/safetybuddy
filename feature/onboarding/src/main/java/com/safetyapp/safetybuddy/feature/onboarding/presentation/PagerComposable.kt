@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.safetyapp.safetybuddy.core.view.composables.PagerScreenButton
 import com.safetyapp.safetybuddy.core.view.composables.AnimatedDisplayComposable
 import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
@@ -30,11 +32,11 @@ fun PagerComposable(
     firstScreenText:String,
     secondScreenText:String,
     @RawRes image:Int,
-    onfinishClicked: () -> Unit = {}
+
 
 ){
 
-    Column(modifier = Modifier.fillMaxHeight()) {
+    Column(modifier = Modifier.wrapContentSize()) {
 
         AnimatedDisplayComposable(
             modifier= Modifier.height(400.dp).fillMaxWidth(),
@@ -66,14 +68,7 @@ fun PagerComposable(
             color = MaterialTheme.colorScheme.secondaryContainer,
         )
 
-        PagerScreenButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding( start = 10.dp, end = 10.dp),
-            isButtonVisible = currentIndex == 2,
-            onButtonClicked = onfinishClicked
 
-        )
 
 
     }

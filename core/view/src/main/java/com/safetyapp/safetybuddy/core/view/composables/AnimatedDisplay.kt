@@ -83,9 +83,10 @@ fun AnimatedDisplayComposable(
 @Composable
 fun AnimatedContentPreview(){
     AnimatedDisplayComposable(
-        modifier =  Modifier
+        modifier =  Modifier.height(300.dp)
         .fillMaxWidth().background(Color.Transparent),
         image =  men_at_work,
+        playAnimation = true,
     )
 }
 

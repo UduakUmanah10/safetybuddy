@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+
+
 android {
     namespace = "com.safetyapp.safetybuddy"
     compileSdk = libs.versions.compile.sdk.get().toInt()

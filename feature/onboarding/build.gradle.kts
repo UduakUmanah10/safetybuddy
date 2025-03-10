@@ -35,6 +35,7 @@ android {
 dependencies {
     implementation(project(":core:view"))
     implementation(libs.androidx.core.ktx)
+    implementation(libs.qindicators)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
