@@ -10,15 +10,13 @@ private const val POST_ID_Args = "postId"
 
 private const val POST_DETAILS_ROUTE:String = "postdetails/$POST_ID_Args={$POST_ID_Args}"
 
-fun  NavGraphBuilder.postSigninScreen(
+fun  NavGraphBuilder.signInScreen1(
     onNavigateUp: () -> Unit,
 ){
 
-
     composable(POST_DETAILS_ROUTE){
 
-
-       signInScreen()
+        signInScreen(onSubmitButtonClicked = {}, isEmailEnabled = true, isPasswordEnabled = true)
     }
 
 

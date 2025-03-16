@@ -12,7 +12,6 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +30,8 @@ internal fun  OnboardingScreen(
         OnBoardingPage.First,
         OnBoardingPage.Second,
         OnBoardingPage.Third,
+       OnBoardingPage.Fourth,
+       OnBoardingPage.Fifth
     ),
     statusBarPadding: Dp = 50.dp,
     onFinishedClicked: () -> Unit = {},
@@ -84,7 +85,7 @@ internal fun  OnboardingScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 40.dp)
-                    .padding(top = 20.dp,),
+                    .padding(top = 20.dp),
                 text =listOfOnboardingItems[currentPage].description,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center,
@@ -96,7 +97,6 @@ internal fun  OnboardingScreen(
 
 
         pagerControllerButtons(
-
 
             modifier =Modifier.padding(all=10.dp),
             currentPage = currentPage,

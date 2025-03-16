@@ -24,6 +24,8 @@ val listOfOnboardingItems:List<OnBoardingPage>  = listOf(
 OnBoardingPage.First,
 OnBoardingPage.Second,
 OnBoardingPage.Third,
+    OnBoardingPage.Fourth,
+    OnBoardingPage.Fifth
     )
 
 @Composable
@@ -63,7 +65,7 @@ fun Txtprev(){
     SafeBuddyTheme {
         PagerComposable(
 
-            image = listOfOnboardingItems[0].image,
+            image = listOfOnboardingItems[4].image,
 
 
         )

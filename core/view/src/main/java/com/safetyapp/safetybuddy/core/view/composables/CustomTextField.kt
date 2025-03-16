@@ -15,6 +15,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.testTag
@@ -43,7 +45,7 @@ fun CustomTextField(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
-         keyboardType = KeyboardType.Password,
+         keyboardType = KeyboardType.Email,
          imeAction = ImeAction.Done
     ),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -57,10 +59,12 @@ fun CustomTextField(
         disabledSupportingTextColor = Color.Blue,
 
         ),
+    isError: Boolean = false,
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
     minLines: Int = 1,
     showTrailingIcon: Boolean = true,
     supportingText: @Composable (() -> Unit)? = null,
+    focusRequester: FocusRequester =FocusRequester(),
     testTag:String = ""
 
     ) {
@@ -68,7 +72,7 @@ fun CustomTextField(
     Column(modifier = modifier) {
 
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth().testTag(testTag),
+            modifier = modifier,
             value = text,
             onValueChange = onTextChanged,
             enabled = enabled,
@@ -78,7 +82,7 @@ fun CustomTextField(
             placeholder = { Text(placeholderText) },
             leadingIcon = leadingIcon,
             trailingIcon =  if (showTrailingIcon) trailingIcon else null,
-            isError =  false,
+            isError =  isError,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
