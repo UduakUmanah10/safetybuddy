@@ -19,7 +19,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.safetyapp.safetybuddy.core.view.R.raw.men_at_work
+import com.safetyapp.safetybuddy.core.view.R.raw.secondlocation
 import kotlinx.coroutines.delay
 
 /** <==To see this composable in preview screen switch the preview to interactive mode ==>
@@ -85,7 +85,7 @@ fun AnimatedContentPreview(){
     AnimatedDisplayComposable(
         modifier =  Modifier.height(300.dp)
         .fillMaxWidth().background(Color.Transparent),
-        image =  men_at_work,
+        image =  secondlocation,
         playAnimation = true,
     )
 }

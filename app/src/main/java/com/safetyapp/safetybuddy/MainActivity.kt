@@ -16,6 +16,9 @@ import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 import com.safetyapp.safetybuddy.feature.home.homeScreen
 import com.safetyapp.safetybuddy.feature.onboarding.presentation.onboardingScreen
+import com.safetyapp.safetybuddy.feature.signin.navigateToSignInScreen
+import com.safetyapp.safetybuddy.feature.signin.signInScreen
+import com.safetyapp.safetybuddy.feature.signin.signInScreen1
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +57,8 @@ class MainActivity : ComponentActivity() {
 
                     }
                     homeScreen(onLogin = {})
-                    onboardingScreen(onFinishedClicked = {})
+                    onboardingScreen(onFinishedClicked = {navController.navigateToSignInScreen(1)})
+                    signInScreen1 {  }
                 }
 
 
@@ -75,7 +79,7 @@ fun GreetingPreview() {
             navController =navController,
             startDestination = "onboardingScreen"
         ) {
-            onboardingScreen(onFinishedClicked = {})
+            onboardingScreen(onFinishedClicked = {navController.navigateToSignInScreen(1)})
         }
 
     }
