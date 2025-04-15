@@ -1,4 +1,5 @@
 package com.safetyapp.safetybuddy.feature.onboarding.presentation
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -12,42 +13,61 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
 import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 @Composable
-internal fun  OnboardingScreen(
-   listOfOnboardingItems: List<OnBoardingPage> = listOf(
+internal fun OnboardingScreen(
+    listOfOnboardingItems: List<OnBoardingPage> = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
         OnBoardingPage.Third,
-       OnBoardingPage.Fourth,
-       OnBoardingPage.Fifth
+        OnBoardingPage.Fourth,
+        OnBoardingPage.Fifth
     ),
     statusBarPadding: Dp = 50.dp,
     onFinishedClicked: () -> Unit = {},
     backgroundColor: Color = SafeBuddyTheme.colorScheme.secondary,
 
-) {
+    ) {
 
     val scope = rememberCoroutineScope()
 
-    val pagerState = rememberPagerState(0){
+    val pagerState = rememberPagerState(0) {
         listOfOnboardingItems.size
     }
 
     val currentPage = pagerState.currentPage
+    val speed by remember { mutableFloatStateOf(1F) }
+    var isAnimationPlaying by remember { mutableStateOf(true) }
 
-    val name: String = if (currentPage < listOfOnboardingItems.size - 1) "next" else "Done"
+    LaunchedEffect(key1 = isAnimationPlaying) {
+        delay(3000)
+        isAnimationPlaying = false
+    }
+
+    val rightButtonText: String = if (currentPage < listOfOnboardingItems.size - 1)
+        stringResource(com.safetyapp.safetybuddy.core.view.R.string.next) else
+        stringResource(com.safetyapp.safetybuddy.core.view.R.string.Done)
+
+
     Column(
         modifier = Modifier
             .background(backgroundColor)
@@ -62,9 +82,11 @@ internal fun  OnboardingScreen(
             modifier = Modifier,
             state = pagerState,
 
-        ) { position ->
-                PagerComposable(
-                    image = listOfOnboardingItems[position].image,
+            ) { position ->
+            PagerComposable(
+                image = listOfOnboardingItems[position].image,
+                speed = speed,
+                isAnimationPlaying = isAnimationPlaying,
 
                 )
 
@@ -73,8 +95,9 @@ internal fun  OnboardingScreen(
         Column(modifier = Modifier.padding(30.dp)) {
             Text(
                 modifier = Modifier
-                    .fillMaxWidth().height(100.dp),
-                text = listOfOnboardingItems[currentPage].title,
+                    .fillMaxWidth()
+                    .height(100.dp),
+                text = stringResource(listOfOnboardingItems[currentPage].title),
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.displaySmall,
@@ -86,7 +109,7 @@ internal fun  OnboardingScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 40.dp)
                     .padding(top = 20.dp),
-                text =listOfOnboardingItems[currentPage].description,
+                text = stringResource(listOfOnboardingItems[currentPage].description),
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleMedium,
@@ -98,24 +121,30 @@ internal fun  OnboardingScreen(
 
         pagerControllerButtons(
 
-            modifier =Modifier.padding(all=10.dp),
+            modifier = Modifier.padding(all = 10.dp),
             currentPage = currentPage,
-            previousButtonText =  "back",
-            nextButtonText = name,
+            previousButtonText = stringResource(com.safetyapp.safetybuddy.core.view.R.string.Back),
+            nextButtonText = rightButtonText,
             indicatorCount = listOfOnboardingItems.size,
             onBackButtonClicked = {
+
                 scope.launch {
-                    if ( currentPage > 0 )
-                        pagerState.animateScrollToPage(currentPage-1)
+                    isAnimationPlaying = true
+                    if (currentPage > 0)
+                        pagerState.animateScrollToPage(currentPage - 1)
                 }
             },
             onNextButtonClicked = {
-                if ( currentPage <  listOfOnboardingItems.size -1 ){
+                isAnimationPlaying = true
+
                 scope.launch {
+                    if (currentPage < listOfOnboardingItems.size - 1) {
+                        pagerState.animateScrollToPage(currentPage + 1)
+                    } else {
+                        onFinishedClicked()
+                    }
 
-                    pagerState.animateScrollToPage(currentPage+1)}
-
-                }else { onFinishedClicked() }
+                }
             }
         )
 
@@ -123,11 +152,10 @@ internal fun  OnboardingScreen(
 }
 
 
-
 @Composable
 @PreviewLightDark
 fun OnBoardingScreenPreview() {
-    SafeBuddyTheme{
+    SafeBuddyTheme {
         OnboardingScreen()
 
     }

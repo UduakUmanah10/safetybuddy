@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="next">Next</string>
+    <string name="Done">Done</string>
+    <string name="Back">Back</string>
+    <string name="Real_Time_Situational_Report">Real-Time Situational Report</string>
+    <string name="IncidentResponse">\"Get real-time incident data and respond appropriately to prevent severe accidents.\"</string>
+    <string name="data_analysis">AI-Driven Data Analysis</string>
+    <string name="Leverage_AI">\"Leverage AI-powered analytics to detect patterns, predict risks, and take proactive measures.\"</string>
+    <string name="Emergency_Calls">Automated Distress Calls</string>
+    <string name="Emergency_Response">Automate emergency calls, execute emergency action plans, and prevent life loss.</string>
+    <string name="Location_Tracking">Locate the Nearest Emergency Point</string>
+    <string name="Real_Time_Location">Quickly find the closest emergency response point and get immediate assistance.</string>
+    <string name="Tracking_location">Enhanced Navigation</string>
+    <string name="Navigate_Effectively">" Navigate efficiently to emergency points using real-time location tracking."</string>
+</resources>

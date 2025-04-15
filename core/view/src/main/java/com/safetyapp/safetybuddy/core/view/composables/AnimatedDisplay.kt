@@ -1,4 +1,5 @@
 package com.safetyapp.safetybuddy.core.view.composables
+
 import androidx.annotation.RawRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -23,13 +24,13 @@ import com.safetyapp.safetybuddy.core.view.R.raw.secondlocation
 import kotlinx.coroutines.delay
 
 /** <==To see this composable in preview screen switch the preview to interactive mode ==>
- These composable renders a view pager component from the material 3 design system.
-  it takes in parameters such as
-  from the onboarding page class.
-  @Param[modifier] : to modify the composable
-  @Param[playAnimation] : to play or stop the animation
-  @Param[delayTime]: to delay the animation
-  @Param[animationSpeed]: to determine the speed of the animation
+These composable renders a view pager component from the material 3 design system.
+it takes in parameters such as
+from the onboarding page class.
+@Param[modifier] : to modify the composable
+@Param[playAnimation] : to play or stop the animation
+@Param[delayTime]: to delay the animation
+@Param[animationSpeed]: to determine the speed of the animation
  * **/
 
 @Composable
@@ -38,28 +39,21 @@ fun AnimatedDisplayComposable(
         .fillMaxWidth()
         .height(400.dp)
         .background(Color.Transparent),
-    @RawRes image:Int ,
-    playAnimation:Boolean= true,
-    delayTime:Long = 2700,
-    animationSpeed:Float =1f,
-    restartOnPlay: Boolean =true,
+    @RawRes image: Int,
+    restartOnPlay: Boolean = true,
+    isAnimationPlaying: Boolean = true,
+    speed: Float = 1f,
 
-) {
+    ) {
     Column(
-       modifier =modifier
+        modifier = modifier
     ) {
         val composition by rememberLottieComposition(
             spec = LottieCompositionSpec.RawRes(
                 image
             )
         )
-        var isAnimationPlaying by remember { mutableStateOf(playAnimation) }
-        val speed by remember { mutableFloatStateOf(animationSpeed) }
 
-        LaunchedEffect(key1 = isAnimationPlaying) {
-            delay(delayTime)
-            isAnimationPlaying = !playAnimation
-        }
 
         val progress by animateLottieCompositionAsState(
             composition = composition,
@@ -77,16 +71,28 @@ fun AnimatedDisplayComposable(
 }
 
 
-
-
 @PreviewLightDark
 @Composable
-fun AnimatedContentPreview(){
+fun AnimatedContentPreview() {
+
+    val speed by remember { mutableFloatStateOf(1F) }
+    var isAnimationPlaying by remember { mutableStateOf(true) }
+
+    LaunchedEffect(key1 = isAnimationPlaying) {
+        delay(2700)
+        isAnimationPlaying = false
+    }
+
+
+
     AnimatedDisplayComposable(
-        modifier =  Modifier.height(300.dp)
-        .fillMaxWidth().background(Color.Transparent),
-        image =  secondlocation,
-        playAnimation = true,
+        speed = speed,
+        modifier = Modifier
+            .height(300.dp)
+            .fillMaxWidth()
+            .background(Color.Transparent),
+        image = secondlocation,
+        isAnimationPlaying = isAnimationPlaying
     )
 }
 
