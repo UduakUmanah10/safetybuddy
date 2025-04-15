@@ -1,5 +1,6 @@
 package com.safetyapp.safetybuddy.core.view.composables
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,13 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -57,6 +55,8 @@ fun CustomTextField(
         disabledBorderColor = Color.Blue,
         disabledTextColor = Color.Blue,
         disabledSupportingTextColor = Color.Blue,
+        unfocusedContainerColor = Color.Transparent
+
 
         ),
     isError: Boolean = false,
@@ -64,7 +64,6 @@ fun CustomTextField(
     minLines: Int = 1,
     showTrailingIcon: Boolean = true,
     supportingText: @Composable (() -> Unit)? = null,
-    focusRequester: FocusRequester =FocusRequester(),
     testTag:String = ""
 
     ) {
@@ -72,7 +71,7 @@ fun CustomTextField(
     Column(modifier = modifier) {
 
         OutlinedTextField(
-            modifier = modifier,
+            modifier = modifier.fillMaxWidth().testTag(testTag).animateContentSize { initialValue, targetValue ->  },
             value = text,
             onValueChange = onTextChanged,
             enabled = enabled,

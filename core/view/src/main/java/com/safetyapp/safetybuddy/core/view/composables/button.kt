@@ -1,6 +1,5 @@
 package com.safetyapp.safetybuddy.core.view.composables
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -12,34 +11,35 @@ import com.safetyapp.safetybuddy.core.view.theme.SafeBuddyTheme
 
 
 @Composable
-fun PagerScreenButton(
+fun CustomButton(
     modifier: Modifier,
-    onButtonClicked: ()->Unit,
-    enabled:Boolean = true,
+    buttonText: String = "Finish",
+    onButtonClicked: () -> Unit,
+    enabled: Boolean = true,
 ) {
 
     Button(
-                modifier = modifier,
-                onClick = onButtonClicked,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor =  SafeBuddyTheme.colorScheme.inverseSurface
-                ),
-                shape = MaterialTheme.shapes.extraLarge,
-                enabled = enabled
-            ) {
-                Text(
-                    text = "Finish",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.secondaryContainer,
-                )
-            }
+        modifier = modifier,
+        onClick = onButtonClicked,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = SafeBuddyTheme.colorScheme.inverseSurface
+        ),
+        shape = MaterialTheme.shapes.extraLarge,
+        enabled = enabled
+    ) {
+        Text(
+            text = buttonText,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.secondaryContainer,
+        )
+    }
 }
 
 @PreviewLightDark
 @Composable
 fun PagerScreenButtonPreview() {
-    PagerScreenButton(
+    CustomButton(
         modifier = Modifier.fillMaxWidth(),
         onButtonClicked = {},
-        )
+    )
 }

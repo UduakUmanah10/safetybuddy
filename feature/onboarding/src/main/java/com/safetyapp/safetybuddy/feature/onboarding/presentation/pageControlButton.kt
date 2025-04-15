@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -13,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.qamar.qindicators.Indicators
 import com.safetyapp.safetybuddy.core.view.composables.PreviewLightDark
@@ -25,13 +28,16 @@ fun pagerControllerButtons(
     indicatorCount: Int = 4,
     indicatorSize : Int = 10,
     indicatorSpacer: Int = 5,
-    indicatorSelectedLength:Int = 40,
+    indicatorSelectedLength:Int = 30,
     selectedColor:Color = SafeBuddyTheme.colorScheme.inverseSurface,
     unSelectedColor:Color = Color.White,
     onNextButtonClicked: ()->Unit ={},
     onBackButtonClicked: ()->Unit={},
     nextButtonText:String = "Next",
-    previousButtonText:String = "Back"
+    previousButtonText:String = "Back",
+    backButtonTestag:String = "",
+    nextButtonTestag:String = "",
+    indicatorTestag:String = ""
 
 ){
     Row(
@@ -42,7 +48,7 @@ fun pagerControllerButtons(
         Box(contentAlignment = Alignment.CenterStart, modifier = Modifier.weight(1f)) {
         if (currentPage > 0){
         Button(
-            modifier = modifier,
+            modifier = Modifier.testTag(backButtonTestag),
             onClick = onBackButtonClicked,
             colors = ButtonDefaults.buttonColors(
                 containerColor =  SafeBuddyTheme.colorScheme.inverseSurface
@@ -62,6 +68,7 @@ fun pagerControllerButtons(
         Box(contentAlignment = Alignment.Center, modifier = Modifier.weight(1f)) {
 
             Indicators(
+                modifier = Modifier.testTag(indicatorTestag),
                 count = indicatorCount,
                 size = indicatorSize,
                 spacer = indicatorSpacer,
@@ -75,7 +82,7 @@ fun pagerControllerButtons(
         Box(contentAlignment = Alignment.CenterEnd, modifier = Modifier.weight(1f)) {
 
             Button(
-                modifier = modifier,
+                modifier = Modifier.testTag(nextButtonTestag),
                 onClick = onNextButtonClicked,
                 colors = ButtonDefaults.buttonColors(
                     containerColor =  SafeBuddyTheme.colorScheme.inverseSurface
@@ -101,6 +108,6 @@ fun pagerControllerButtons(
 fun PagerScreenButtonPreview() {
     SafeBuddyTheme{
  val modifier = Modifier
-    pagerControllerButtons( modifier =modifier)
+    pagerControllerButtons( currentPage = 1,  modifier =modifier)
     }
 }
